@@ -77,4 +77,12 @@
 <div class="bg" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/The_Remarkables_from_Queenstown%2C_New_Zealand_08.jpg/1280px-The_Remarkables_from_Queenstown%2C_New_Zealand_08.jpg')"></div><div class="veil"></div>
 <div class="in"><div class="rune">Queenstown · Day 8</div><h3 style="font-size:1.25rem">The Queenstown Flex Day</h3></div></a></div></div></section><footer class="site"><div class="disp">« Not all those who wander are lost »</div>
 <nav><a href="atlas.html">The Atlas</a><a href="itinerary.html">Journey</a><a href="map.html">Map</a><a href="guide.html">Field Guide</a></nav>
-<p class="credit" style="margin-top:20px">Prices &amp; hours change — verify before booking. Photographs by Wikimedia Commons contributors.</p></footer></body></html>
+<p class="credit" style="margin-top:20px">Prices &amp; hours change — verify before booking. Photographs by Wikimedia Commons contributors.</p></footer>
+<script>
+document.querySelectorAll('.caro').forEach(function(c){
+  var t=c.querySelector('.ctrack');
+  function step(){return t.querySelector('img').getBoundingClientRect().width+10}
+  c.querySelector('.cprev').addEventListener('click',function(){t.scrollBy({left:-step(),behavior:'smooth'})});
+  c.querySelector('.cnext').addEventListener('click',function(){t.scrollBy({left:step(),behavior:'smooth'})});
+});
+</script></body></html>
