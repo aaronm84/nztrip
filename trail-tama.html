@@ -1,0 +1,47 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><title>Tama Lakes Track — New Zealand 2027</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"><link rel="stylesheet" href="style.css">
+<style>
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:2px;background:var(--line);border:1px solid var(--line);border-radius:4px;overflow:hidden;margin-top:38px}
+.facts div{background:#FBF6EA;padding:16px 18px}
+.facts .rune{color:rgba(36,28,17,.5);font-size:.54rem;display:block;margin-bottom:5px}
+.facts b{font-family:"Cinzel",serif;font-size:.95rem;font-weight:600}
+.seccard{background:#FBF6EA;border:1px solid var(--line);border-radius:4px;padding:26px 28px;margin-bottom:20px}
+.seccard h3{font-size:1.28rem;margin-bottom:4px}
+.seccard .meta{font-style:italic;color:rgba(36,28,17,.6);font-size:.92rem;margin-bottom:12px}
+.seccard p{color:rgba(36,28,17,.8);font-size:.99rem}
+.seccard .tags{display:flex;gap:7px;flex-wrap:wrap;margin:12px 0 0}
+.seccard .btns{margin-top:16px;display:flex;gap:10px;flex-wrap:wrap}
+.btn.sm{padding:10px 16px;font-size:.62rem}
+.tag.warn2{border-color:#8E3B26;color:#8E3B26;background:rgba(142,59,38,.06)}
+.tag.ok{border-color:var(--fangorn);color:var(--fangorn);background:rgba(46,74,50,.06)}
+.duo{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+#tmap{height:380px;border:1px solid var(--line);border-radius:4px;margin-top:30px}
+.crumbs{font-size:.8rem;letter-spacing:.06em;margin:26px 0 0;color:rgba(36,28,17,.55)}
+.crumbs a{color:var(--rohan);text-decoration:none}
+.playbook{margin:0 0 30px;padding:20px 26px;border:1.5px solid var(--ring);border-radius:4px;background:rgba(185,138,46,.06);font-size:.96rem}
+.playbook strong{font-family:"Cinzel",serif;font-size:.82rem;letter-spacing:.06em;color:var(--rohan)}
+</style></head><body><nav class="site"><div class="in">
+    <a class="brand" href="index.html">NZ · MMXXVII</a>
+    <a class="pg" href="index.html">The Tale</a>
+    <a class="pg" href="itinerary.html">The Journey</a>
+    <a class="pg" href="map.html">The Map</a>
+    <a class="pg" href="practical.html">Provisions</a>
+    <a class="pg" href="guide.html">Field Guide</a>
+    <a class="pg" href="gear.html">The Kit</a>
+    <a class="pg here" href="atlas.html">The Atlas</a>
+  </div></nav><div class="pagehero" style="padding:76px 26px 62px"><div class="bg" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Tongariro_Mahuia_River_n.jpg/1920px-Tongariro_Mahuia_River_n.jpg')"></div><div class="veil"></div>
+<div class="in"><div class="rune">A Walk · Tongariro · Day 4</div><h1 style="font-size:clamp(2rem,6vw,3.6rem)">Tama Lakes Track</h1><p>The same start as Taranaki Falls, then onward across open alpine tussock into the saddle between Ruapehu and Ngauruhoe, where two old explosion craters hold cold blue lakes.</p></div></div><section style="padding-top:40px"><div class="wrap"><div class="crumbs"><a href="atlas.html">← The Atlas</a></div><div class="facts"><div><span class="rune">Distance</span><b>Up to 17 km return</b></div><div><span class="rune">Time</span><b>Turn around anytime — ≤5h</b></div><div><span class="rune">Climb</span><b>~300–400 m — moderate</b></div><div><span class="rune">Trailhead</span><b>Whakapapa Village</b></div></div><div style="height:34px"></div><div class="seccard"><h3>The walk</h3><p>The same start as Taranaki Falls, then onward across open alpine tussock into the saddle between Ruapehu and Ngauruhoe, where two old explosion craters hold cold blue lakes. The Lower Tama lookout is the natural turnaround; the Upper adds a steep, loose scramble.</p></div><div class="seccard"><h3>What walkers say</h3><p>The consensus: the first lookout carries most of the reward, and the out-and-back format makes it honest — turn around whenever it stops being fun. Reviewers flag the exposed saddle wind and how fast weather moves here.</p></div><div class="seccard"><h3>Our notes</h3><p>This is the hike most likely to be swapped if early snow arrives — check DOC conditions the night before. No water or shelter past the falls; carry everything.</p><div class="btns"><a class="btn sm gold" href="https://www.google.com/search?q=DOC+Tama+Lakes+track" target="_blank" rel="noopener">DOC track page</a><a class="btn sm gold" href="https://www.google.com/search?q=AllTrails+Tama+Lakes+track" target="_blank" rel="noopener">AllTrails reviews</a></div></div><div id="tmap"></div><p class="credit" style="margin-top:10px">Trailhead and destination markers with an approximate line — follow the DOC track map on the day. Map © OpenStreetMap contributors.</p></div></section><script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+var m=L.map('tmap',{scrollWheelZoom:false});
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'&copy; OpenStreetMap contributors',maxZoom:16}).addTo(m);
+var A=[-39.2006,175.5393],B=[-39.253,175.596];
+L.marker(A).addTo(m).bindPopup('Trailhead');
+L.marker(B).addTo(m).bindPopup('Lower Tama lookout');
+L.polyline([A,B],{color:'#2E4A32',weight:3,dashArray:'6 8',opacity:.8}).addTo(m);
+m.fitBounds(L.latLngBounds([A,B]).pad(.35));
+</script><footer class="site"><div class="disp">« The road goes ever on and on »</div>
+<nav><a href="atlas.html">The Atlas</a><a href="itinerary.html">Journey</a><a href="map.html">Map</a><a href="guide.html">Field Guide</a></nav>
+<p class="credit" style="margin-top:20px">Prices &amp; hours change — verify before booking. Photographs by Wikimedia Commons contributors.</p></footer></body></html>
