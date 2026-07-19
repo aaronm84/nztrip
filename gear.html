@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Kit — New Zealand 2027</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+/* presets bar */
+.presets{position:sticky;top:52px;z-index:30;background:rgba(241,232,212,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:14px 0}
+.presets .in{max-width:1060px;margin:0 auto;padding:0 26px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.presets .rune{color:rgba(36,28,17,.55);font-size:.56rem;margin-right:4px}
+.pbtn{
+  font-family:"Cinzel",serif;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;
+  background:none;border:1px solid var(--line);border-radius:2px;padding:9px 14px;cursor:pointer;color:rgba(36,28,17,.7);transition:.2s;
+}
+.pbtn:hover{border-color:var(--ring);color:var(--rohan)}
+.pbtn.on{background:var(--fangorn);border-color:var(--fangorn);color:var(--parchment)}
+.runtotal{margin-left:auto;text-align:right}
+.runtotal .rune{display:block;margin:0 0 2px}
+.runtotal b{font-family:"Cinzel",serif;font-size:1.5rem;font-weight:700;color:var(--rohan);line-height:1}
+
+/* category cards */
+.cat{background:#FBF6EA;border:1px solid var(--line);border-radius:4px;margin-bottom:26px;overflow:hidden}
+.cat .head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:22px 26px 0;flex-wrap:wrap}
+.cat .head h3{font-size:1.3rem}
+.cat .head .qty{font-size:.85rem;font-style:italic;color:rgba(36,28,17,.55)}
+.tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:16px 26px 20px}
+.tier{
+  border:1px solid var(--line);border-radius:3px;padding:14px 16px;cursor:pointer;transition:.2s;position:relative;background:#F6EEDC;
+}
+.tier:hover{border-color:var(--ring)}
+.tier.sel{border-color:var(--ring);box-shadow:0 0 0 1.5px var(--ring);background:#FBF3DD}
+.tier.sel::after{content:"✦";position:absolute;top:10px;right:12px;color:var(--ring);font-size:.9rem}
+.tier .rune{font-size:.52rem;color:rgba(36,28,17,.5);display:block}
+.tier .prod{font-weight:500;font-size:.96rem;margin:4px 0 2px;line-height:1.35;padding-right:14px}
+.tier .why{font-size:.84rem;color:rgba(36,28,17,.62);font-style:italic;line-height:1.4}
+.tier .pr{font-family:"Cinzel",serif;font-size:.82rem;color:var(--rohan);margin-top:8px;display:block}
+.tier.star .rune::after{content:" · sweet spot ⭐";color:var(--rohan)}
+.cat .foot{padding:0 26px 20px;font-size:.88rem;color:rgba(36,28,17,.65)}
+.cat .foot em{color:var(--rohan)}
+.opt-toggle{display:flex;align-items:center;gap:10px;padding:0 26px 18px;font-size:.9rem;color:rgba(36,28,17,.7)}
+.opt-toggle input{appearance:none;width:34px;height:19px;border-radius:10px;background:rgba(36,28,17,.18);position:relative;cursor:pointer;transition:.2s;flex:none}
+.opt-toggle input::after{content:"";position:absolute;left:2px;top:2px;width:15px;height:15px;border-radius:50%;background:#FBF6EA;transition:.2s}
+.opt-toggle input:checked{background:var(--fangorn)}
+.opt-toggle input:checked::after{left:17px}
+
+/* interstitial images */
+.strip{margin:38px 0;border-radius:4px;overflow:hidden;border:1px solid var(--line);position:relative}
+.strip img{width:100%;height:240px;object-fit:cover;display:block;filter:saturate(.9) sepia(.06)}
+.strip .cap{position:absolute;left:0;right:0;bottom:0;padding:10px 18px;font-size:.7rem;color:rgba(241,232,212,.85);background:linear-gradient(180deg,transparent,rgba(20,25,18,.7))}
+
+.warn{margin:26px 0;padding:20px 24px;border-left:3px solid #8E3B26;background:rgba(142,59,38,.07);font-size:.97rem}
+.warn strong{font-family:"Cinzel",serif;font-size:.84rem;letter-spacing:.05em;color:#8E3B26}
+
+@media(max-width:760px){
+  .tiers{grid-template-columns:1fr}
+  .presets{top:49px}
+  .runtotal{margin-left:0;width:100%;text-align:left}
+}
+</style>
+</head>
+<body>
+
+<nav class="site">
+  <div class="in">
+    <a class="brand" href="index.html">NZ · MMXXVII</a>
+    <a class="pg" href="index.html">The Tale</a>
+    <a class="pg" href="itinerary.html">The Journey</a>
+    <a class="pg" href="map.html">The Map</a>
+    <a class="pg" href="practical.html">Provisions</a>
+    <a class="pg" href="guide.html">Field Guide</a>
+    <a class="pg here" href="gear.html">The Kit</a>
+  </div>
+</nav>
+
+<div class="pagehero" style="padding:84px 26px 70px">
+  <div class="bg" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Merino_New_Zealand.jpg/1920px-Merino_New_Zealand.jpg')"></div>
+  <div class="veil"></div>
+  <div class="in">
+    <div class="rune">Chapter V · The Outfitting</div>
+    <h1>The Kit</h1>
+    <p>Head-to-toe gear for two, bought from scratch — every category in three tiers, all of it 100% merino where wool goes. Tap tiers to build the kit and watch the total.</p>
+  </div>
+</div>
+
+<div class="presets">
+  <div class="in">
+    <span class="rune">Build</span>
+    <button class="pbtn" data-p="low">All Low</button>
+    <button class="pbtn" data-p="med">All Medium</button>
+    <button class="pbtn" data-p="high">All High</button>
+    <button class="pbtn on" data-p="mix">Smart Mix ⭐</button>
+    <div class="runtotal"><span class="rune">Kit total · both of us</span><b id="total">$0</b></div>
+  </div>
+</div>
+
+<section style="padding-top:44px">
+  <div class="wrap">
+    <p class="lede" style="margin-bottom:8px">Every tier works — the difference is fit-and-finish, weight, and how many years it lasts. The strategy: <em>spend up where it touches weather and feet</em> (shell, boots, the everyday base tops), <em>save on the situational</em>. And since cold is a feature of this trip, the kit deliberately under-insulates — the gold goes into staying dry and cutting wind.</p>
+    <div style="height:26px"></div>
+    <div id="cats"></div>
+
+    <div class="warn"><strong>Down &amp; wet weather — the one rule.</strong> Down collapses when soaked, and Fiordland is the wettest ground we'll cross. The down jacket is for <em>dry cold</em> — mornings, evenings, town, the plane, worn under the shell. For actively wet hiking, a synthetic layer (Patagonia Nano Puff / Arc'teryx Atom, ~$239) still warms when damp — and given the cold tolerance, a grid fleece like the <em>Patagonia R1 Air</em> (~$139–159) will honestly be the most-worn layer of the trip.</div>
+
+    <div class="strip"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Hiker_standing_on_a_log_at_the_Alouette_Lake_near_Maple_Ridge%2C_British_Columbia_surrounded_by_mist_and_precipitation._Photo_by_Robert_Alexander_Wilson%2C_2017_%28Unsplash%29.jpg/1280px-Hiker_standing_on_a_log_at_the_Alouette_Lake_near_Maple_Ridge%2C_British_Columbia_surrounded_by_mist_and_precipitation._Photo_by_Robert_Alexander_Wilson%2C_2017_%28Unsplash%29.jpg" alt="Hiker in mist and rain"><div class="cap">The shell earns its keep — mist, wind, and sideways rain are the trip's default weather</div></div>
+
+    <div class="orn"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 2 L13.5 8.5 L20 11 L13.5 13.5 L11 20 L8.5 13.5 L2 11 L8.5 8.5 Z" stroke="currentColor" stroke-width="1.2"/></svg></div>
+    <h2 class="center">Buying lore</h2>
+    <div class="grid3" style="margin-top:36px">
+      <div class="imgcard"><div class="pad">
+        <h4 style="margin-bottom:10px">Boots first, everything else waits</h4>
+        <p style="font-size:.95rem;color:rgba(36,28,17,.75)">Buy boots by early 2027 and walk 30–50 miles in them before flying — the one item that punishes last-minute buying. Size up a half if between sizes; feet swell on descents. Everything else can wait for a sale.</p>
+      </div></div>
+      <div class="imgcard"><div class="pad">
+        <h4 style="margin-bottom:10px">REI is the one-stop cart</h4>
+        <p style="font-size:.95rem;color:rgba(36,28,17,.75)">It stocks nearly every brand here, and member returns make boot-fit swaps painless. Watch the Anniversary Sale in May and REI Outlet for 20–30% off prior-season colors. Arc'teryx rarely discounts — buy when your size shows up.</p>
+      </div></div>
+      <div class="imgcard"><div class="pad">
+        <h4 style="margin-bottom:10px">Merino traps to dodge</h4>
+        <p style="font-size:.95rem;color:rgba(36,28,17,.75)">Icebreaker <em>Cool-Lite</em> and Smartwool <em>Sport</em> are merino-poly blends; "Arms of Andes" is alpaca. Every pick on this page is confirmed 100% merino — the only unavoidable blends are gloves and socks, which need nylon to grip and survive.</p>
+      </div></div>
+    </div>
+
+    <div class="strip"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Hand_knitted_socks.jpg/1280px-Hand_knitted_socks.jpg" alt="Wool socks"><div class="cap">Four pairs each — Fiordland is too wet for socks to dry overnight</div></div>
+
+    <div class="note"><strong>Why merino runs the whole strategy:</strong> two long-sleeves, two tees, and bottoms per person is roughly five days of wear before the Wellington laundry stop — merino re-wears without complaint, which is the entire reason one mid-size checked bag each is enough. Add one bottle of Nikwax TX.Direct ($15) and re-treat both shells before flying; worn-off repellency is the number-one rain-jacket failure.</div>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="disp">« It's dangerous to go unprepared »</div>
+  <nav>
+    <a href="index.html">The Tale</a><a href="itinerary.html">Journey</a><a href="map.html">Map</a><a href="practical.html">Provisions</a><a href="guide.html">Field Guide</a>
+  </nav>
+  <p class="credit" style="margin-top:20px">Prices are approximate 2026 US retail — verify at checkout. Photographs by Wikimedia Commons contributors.</p>
+</footer>
+
+<script>
+/* prices are per-couple, from the shopping list quantities */
+var CATS=[
+{id:'shell',name:'1 · Waterproof hardshell',qty:'One each — THE critical buy; lean medium/high here',
+ t:[{p:'REI Co-op Rainier (2.5L, pit zips)',w:'A real waterproof shell at a budget price — not "water resistant."',c:200},
+    {p:'OR Foray (M) / Aspire (W) 3L — or Patagonia Torrentshell 3L ($179ea)',w:'Side-zip vents for constant Fiordland rain; Torrentshell is the value play.',c:450},
+    {p:"Arc'teryx Beta (3L Gore-Tex ePE)",w:'Gold standard for sustained rain + Wellington wind; trim enough for town.',c:800}],star:2},
+{id:'rainpants',name:'2 · Waterproof rain pants',qty:'One each — worn over hiking pants when it pours',
+ t:[{p:'REI Co-op Rainier Full-Zip',w:'Full side zips: on and off without removing boots.',c:200},
+    {p:'Patagonia Torrentshell 3L',w:'Waterproof, packable, best all-round value.',c:278},
+    {p:'OR Foray (M) / Aspire (W) 3L',w:'Quiet fabric, great venting, matches the jacket.',c:420}]},
+{id:'insul',name:'3 · Insulation — down leads',qty:'One each · for dry cold, not wet hiking (see the rule below)',
+ t:[{p:'REI Co-op 650 Down Jacket',w:'650-fill natural down; huge warmth per dollar.',c:258},
+    {p:'Patagonia Down Sweater (800-fill)',w:'Plane, dinner, trail; wide size range.',c:558},
+    {p:"Arc'teryx Cerium Hoody (850-fill)",w:'Synthetic in damp-prone zones — shrugs off moisture.',c:800}]},
+{id:'base',name:'4 · Merino base layers',qty:'Per person: 2× LS top · 2× tee · 1× bottoms — 100% merino in every tier',
+ t:[{p:'Meriwool 190 + Minus33 Woolverino',w:'The genuine 100%-merino budget market; halves the layer bill.',c:514},
+    {p:'Icebreaker 175 Everyday + Tech Lite II',w:'The benchmark; softer hand, longer life.',c:910},
+    {p:'Icebreaker ZoneKnit / 260 + Ibex Woolies',w:'Vented tops, warmest bottoms.',c:1080}]},
+{id:'mid',name:'4b · Merino mid-layer (~250gsm)',qty:'Optional given the cold tolerance — one each if wanted',opt:true,
+ t:[{p:'Minus33 Chocorua Midweight Crew',w:'100% merino, honest price.',c:180},
+    {p:'Smartwool Classic Thermal 250',w:'The classic winter crew.',c:250},
+    {p:'Icebreaker 260 Tech Half-Zip',w:'The zip dumps heat fast.',c:280}]},
+{id:'acc',name:'5 · Beanie · gaiter · gloves',qty:'One each per person · merino throughout — gloves are the unavoidable blend',
+ t:[{p:'Minus33 beanie + Meriwool gaiter + Minus33 liner gloves',w:'All-merino where physics allows.',c:132},
+    {p:'Smartwool beanie + Buff Merino + Smartwool gloves',w:'Get Buff\u2019s Merino line, not poly CoolNet.',c:214},
+    {p:'Icebreaker beanie + Flexi Chute + knit gloves',w:'The matched set.',c:240}]},
+{id:'socks',name:'6 · Hiking socks ×8 pairs',qty:'Four pairs each — too wet in Fiordland to dry overnight · the accepted nylon blend',
+ t:[{p:'Meriwool / REI Co-op Merino Hiker',w:'Solid and cheap.',c:136},
+    {p:'Darn Tough Hiker Micro Crew',w:'Lifetime warranty. Seriously.',c:208},
+    {p:'Smartwool Performance / Farm to Feet',w:'Plushest underfoot.',c:232}],star:1},
+{id:'boots',name:'7 · Waterproof boots — Salomon-led',qty:'One pair each · buy by early 2027, break in over 30–50 miles',
+ t:[{p:'Salomon X Ultra 360 Mid GTX — alt: Merrell Moab 3 Mid WP',w:'Moab is famous out-of-box comfort.',c:340},
+    {p:'Salomon X Ultra 5 Mid GTX — alt: HOKA Anacapa 2 Mid GTX',w:'The sweet spot for these wet day-hikes.',c:380},
+    {p:'Salomon Quest 5 GTX — alt: La Sportiva TX Hike Mid',w:'4D chassis, maximum support.',c:480}],star:1},
+{id:'pants',name:'8 · Hiking pants ×2 each',qty:'One lighter + one warmer per person',
+ t:[{p:'REI Co-op Sahara + Sahara Lined',w:'The lined pair covers the cold mornings.',c:300},
+    {p:'prAna Stretch Zion II (M) / Halle II (W)',w:'The long-trip standard.',c:380},
+    {p:"Arc'teryx Gamma softshell / KÜHL Frost",w:'Wind-shedding softshell warmth.',c:620}]},
+{id:'daypack',name:'9 · Daypack 20–30L — Osprey-led',qty:'One each · built-in rain cover matters here',
+ t:[{p:'Osprey Hikelite 26 — alt: Cotopaxi Batac 24',w:'Cover built in; Batac needs one added.',c:270},
+    {p:'Osprey Stratos 24 (M) / Sirrus 24 (W) — alt: Gregory Zulu/Jade',w:'Ventilated backs, covers included.',c:400},
+    {p:'Osprey Talon Pro 30 (M) / Tempest Pro (W)',w:'Lightest and best-carrying; add a ~$40 cover.',c:500}]},
+{id:'duffel',name:'10 · Packable overnight duffel',qty:'One, shared — for the Milford cruise night; stows tiny otherwise',
+ t:[{p:'Matador Transit30 2.0',w:'Collapses to ~4.6 inches; disappears until needed.',c:50},
+    {p:'Patagonia Black Hole 40L',w:'Weatherproof shell — right at home on a wet boat deck.',c:165},
+    {p:'Cotopaxi Allpa 50L Duffel',w:'Most organized; converts to a pack; lifetime warranty.',c:105}],star:1},
+{id:'dry',name:'11 · Dry bags',qty:'One set, shared — camera, electronics, spare layers on the cruise & hikes',
+ t:[{p:'Sea to Summit Ultra-Sil ×3 (3/5/8L)',w:'Featherweight, does the job.',c:70},
+    {p:'Sea to Summit Ultra-Sil ×3 (3/5/8L)',w:'Same pick — no meaningful middle tier exists.',c:70},
+    {p:'Sea to Summit Big River (8/13/20L)',w:'Burlier fabric, bigger volumes.',c:135}]},
+{id:'gaiters',name:'12 · Low gaiters',qty:'Optional · keeps mud out of boot tops on Routeburn & Key Summit',opt:true,
+ t:[{p:'Kahtoola INSTAgaiter Low ×2',w:'One price, one pick.',c:88},
+    {p:'Kahtoola INSTAgaiter Low ×2',w:'Same pick at every tier.',c:88},
+    {p:'Kahtoola INSTAgaiter Low ×2',w:'Same pick at every tier.',c:88}]}
+];
+
+var state={};           /* id -> 0/1/2 */
+var enabled={};         /* id -> bool (optionals) */
+var MIX={shell:2,rainpants:1,insul:1,base:1,mid:0,acc:0,socks:1,boots:1,pants:0,daypack:1,duffel:1,dry:0,gaiters:0};
+
+function build(){
+  document.getElementById('cats').innerHTML=CATS.map(function(c){
+    var names=['Low','Medium','High'];
+    return '<div class="cat" id="cat-'+c.id+'">'
+    +'<div class="head"><h3>'+c.name+'</h3><span class="qty">'+c.qty+'</span></div>'
+    +(c.opt?'<div class="opt-toggle"><input type="checkbox" data-opt="'+c.id+'" '+(enabled[c.id]?'checked':'')+'><span>Include this in the kit</span></div>':'')
+    +'<div class="tiers">'+c.t.map(function(t,i){
+      return '<div class="tier'+(state[c.id]===i?' sel':'')+(c.star===i?' star':'')+'" data-cat="'+c.id+'" data-i="'+i+'">'
+      +'<span class="rune">'+names[i]+'</span><div class="prod">'+t.p+'</div><div class="why">'+t.w+'</div>'
+      +'<span class="pr">$'+t.c.toLocaleString()+' · both of us</span></div>';
+    }).join('')+'</div></div>';
+  }).join('');
+  wire();total();
+}
+function wire(){
+  document.querySelectorAll('.tier').forEach(function(el){
+    el.addEventListener('click',function(){
+      var id=el.dataset.cat;
+      state[id]=+el.dataset.i;
+      if(CATS.find(function(c){return c.id===id}).opt){enabled[id]=true;var tg=document.querySelector('[data-opt="'+id+'"]');if(tg)tg.checked=true}
+      document.querySelectorAll('#cat-'+id+' .tier').forEach(function(x){x.classList.toggle('sel',+x.dataset.i===state[id])});
+      clearPreset();total();
+    });
+  });
+  document.querySelectorAll('[data-opt]').forEach(function(tg){
+    tg.addEventListener('change',function(){enabled[tg.dataset.opt]=tg.checked;clearPreset();total()});
+  });
+}
+function total(){
+  var sum=0;
+  CATS.forEach(function(c){
+    if(c.opt&&!enabled[c.id])return;
+    sum+=c.t[state[c.id]||0].c;
+  });
+  document.getElementById('total').textContent='$'+sum.toLocaleString();
+}
+function clearPreset(){document.querySelectorAll('.pbtn').forEach(function(b){b.classList.remove('on')})}
+function preset(p){
+  CATS.forEach(function(c){
+    if(p==='mix'){state[c.id]=MIX[c.id]||0;enabled[c.id]=false}
+    else{state[c.id]=p==='low'?0:p==='med'?1:2;enabled[c.id]=false}
+  });
+  build();
+  document.querySelectorAll('.pbtn').forEach(function(b){b.classList.toggle('on',b.dataset.p===p)});
+}
+document.querySelectorAll('.pbtn').forEach(function(b){
+  b.addEventListener('click',function(){preset(b.dataset.p)});
+});
+preset('mix');
+</script>
+</body>
+</html>
