@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Field Guide — New Zealand 2027</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.tabs{display:flex;gap:4px;justify-content:center;margin-top:34px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.tabs button{
+  background:none;border:0;border-bottom:2px solid transparent;padding:13px 18px;cursor:pointer;
+  font-family:"Cinzel",serif;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(36,28,17,.6);transition:.2s;
+}
+.tabs button:hover{color:var(--ink)}
+.tabs button.on{color:var(--rohan);border-bottom-color:var(--ring)}
+.panel{display:none;padding-top:38px}
+.panel.on{display:block;animation:fade .4s ease}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:32px}
+.cols h4{font-size:1.1rem;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+.cols li{margin:9px 0 9px 18px;color:rgba(36,28,17,.78);font-size:.99rem}
+.cols p.blurb{color:rgba(36,28,17,.72);font-size:.97rem}
+/* packing */
+.packhead{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
+.prog{min-width:220px;flex:1;max-width:340px}
+.prog .rune{color:rgba(36,28,17,.55);font-size:.58rem;display:flex;justify-content:space-between;letter-spacing:.2em}
+.pbar{height:5px;background:rgba(36,28,17,.1);border-radius:3px;overflow:hidden;margin-top:8px}
+.pfill{height:100%;background:linear-gradient(90deg,var(--fangorn),var(--ring));width:0;transition:.4s}
+.packgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:32px;margin-top:34px}
+.packgrid h4{font-size:1.02rem;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+label.pk{display:flex;gap:11px;align-items:flex-start;padding:6px 0;cursor:pointer;font-size:.97rem;color:rgba(36,28,17,.78);transition:.2s}
+label.pk:hover{color:var(--ink)}
+label.pk input{appearance:none;width:16px;height:16px;border:1.4px solid rgba(36,28,17,.5);border-radius:2px;margin-top:4px;flex:none;cursor:pointer;transition:.2s;position:relative;background:#FBF6EA}
+label.pk input:checked{background:var(--fangorn);border-color:var(--fangorn)}
+label.pk input:checked::after{content:"";position:absolute;left:4.5px;top:1.5px;width:4px;height:8px;border:solid #F1E8D4;border-width:0 1.8px 1.8px 0;transform:rotate(42deg)}
+label.pk input:checked ~ span{text-decoration:line-through;opacity:.45}
+label.pk input:focus-visible{outline:2px solid var(--ring);outline-offset:2px}
+/* hikes */
+.hikecard{display:grid;grid-template-columns:100px 1fr;gap:18px;padding:20px 0;border-top:1px solid var(--line-soft);align-items:start}
+.hikecard:last-of-type{border-bottom:1px solid var(--line-soft)}
+.hikestat{text-align:center;border:1.5px solid var(--ring);border-radius:4px;padding:12px 6px}
+.hikestat b{font-family:"Cinzel",serif;font-size:1.3rem;font-weight:700;color:var(--rohan);display:block;line-height:1}
+.hikestat span{font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;font-family:"Cinzel",serif;color:rgba(36,28,17,.5)}
+.hikecard h4{font-size:1.16rem;margin-bottom:3px}
+.hikecard p{color:rgba(36,28,17,.75);font-size:.97rem}
+@media(max-width:560px){.hikecard{grid-template-columns:78px 1fr;gap:14px}}
+</style>
+</head>
+<body>
+
+<nav class="site">
+  <div class="in">
+    <a class="brand" href="index.html">NZ · MMXXVII</a>
+    <a class="pg" href="index.html">The Tale</a>
+    <a class="pg" href="itinerary.html">The Journey</a>
+    <a class="pg" href="map.html">The Map</a>
+    <a class="pg" href="practical.html">Provisions</a>
+    <a class="pg here" href="guide.html">Field Guide</a>
+  </div>
+</nav>
+
+<div class="pagehero" style="padding:84px 26px 70px">
+  <div class="bg" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Stocking_Stream_Shelter_in_Hooker_Valley_in_front_of_Aoraki_Mount_Cook_Range.jpg/1920px-Stocking_Stream_Shelter_in_Hooker_Valley_in_front_of_Aoraki_Mount_Cook_Range.jpg')"></div>
+  <div class="veil"></div>
+  <div class="in">
+    <div class="rune">Chapter IV · The Small Wisdoms</div>
+    <h1>Field Guide</h1>
+    <p>What goes in the pack, what goes on the plate, how the left side of the road works, and the five walks.</p>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <div class="tabs" id="tabs">
+      <button class="on" data-p="pack">The Pack</button>
+      <button data-p="gf">Gluten Free</button>
+      <button data-p="drive">The Left Side</button>
+      <button data-p="hikes">Five Walks</button>
+    </div>
+
+    <!-- PACK -->
+    <div class="panel on" id="p-pack">
+      <div class="packhead">
+        <p class="blurb" style="max-width:44rem;font-style:italic;color:rgba(36,28,17,.72)">One mid-size case each, and it fits comfortably: wear the boots and shell on the plane, lean on merino, pack for six days not twelve — there's laundry in Wellington — and keep a quarter of the case empty for merino and wine coming home.</p>
+        <div class="prog">
+          <div class="rune"><span>Packed</span><span id="pn">0 / 0</span></div>
+          <div class="pbar"><div class="pfill" id="pf"></div></div>
+        </div>
+      </div>
+      <div class="packgrid" id="packgrid"></div>
+      <div class="note"><strong>Note:</strong> the checklist resets when the page closes — it's for the satisfying week-before ritual, not long-term tracking.</div>
+    </div>
+
+    <!-- GF -->
+    <div class="panel" id="p-gf">
+      <p class="blurb" style="max-width:46rem;margin:0 auto;text-align:center;font-style:italic">New Zealand is among the easiest countries on earth for this — likely easier than home. Coeliac awareness is high, menus label as standard practice, and "gluten free" is a regulated claim under NZ food law.</p>
+      <div class="cols" style="margin-top:38px">
+        <div><h4>Why it works</h4><ul>
+          <li>Wellington, Queenstown and Auckland mark GF on menus as a matter of course.</li>
+          <li>Countdown, New World and Pak'nSave all carry real GF sections — stock up before the drive days.</li>
+          <li>The food culture leans our way: lamb, venison, seafood, vegetables. The wine needs no defence.</li>
+        </ul></div>
+        <div><h4>Flag at booking</h4><ul>
+          <li><strong>The Hobbiton banquet</strong> — a fixed menu. The note goes on the reservation, not on the night.</li>
+          <li><strong>The Milford cruise</strong> — likewise. Crews handle it beautifully with notice.</li>
+          <li>Say <em>coeliac</em>, not gluten free, when it must be treated as medical. The word lands differently there.</li>
+        </ul></div>
+        <div><h4>The thin stretches</h4><ul>
+          <li>National Park Village and Te Anau are small — carry provisions into both.</li>
+          <li>Aoraki Court rooms have full kitchens; one self-catered night takes all pressure off.</li>
+          <li>Every NZ booking form has a dietary field. Fill it in, every single time.</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <!-- DRIVE -->
+    <div class="panel" id="p-drive">
+      <p class="blurb" style="max-width:46rem;margin:0 auto;text-align:center;font-style:italic">Most Americans are uneasy for two days and fine by the third. The left side isn't really the hard part — the narrow country roads are.</p>
+      <div class="cols" style="margin-top:38px">
+        <div><h4>Where mistakes live</h4><ul>
+          <li>Pulling out of empty car parks with no traffic to copy. The charm to recite: <strong>driver stays toward the centerline.</strong></li>
+          <li>Right turns become the big turn, across traffic.</li>
+          <li>Roundabouts run clockwise; yield to the right.</li>
+          <li>The wipers will fire instead of the indicator for three days. It happens to everyone.</li>
+        </ul></div>
+        <div><h4>Local knowledge</h4><ul>
+          <li>One-lane bridges are everywhere — the sign says who yields.</li>
+          <li>Add 20–30% to every drive time the map app promises.</li>
+          <li>Late autumn puts ice on shaded morning corners; drive the passes at midday.</li>
+          <li>An automatic, always — and confirm the car suits alpine roads.</li>
+        </ul></div>
+        <div><h4>The first 48 hours</h4><ul>
+          <li>First drive somewhere quiet, never straight from the airport into traffic.</li>
+          <li>The passenger's sworn duty on day one: call "stay left" at every single turn.</li>
+          <li>Keep the legs under 2.5 hours at the start. The mental load is real, then it's gone.</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <!-- HIKES -->
+    <div class="panel" id="p-hikes">
+      <p class="blurb" style="max-width:46rem;margin:0 auto;text-align:center;font-style:italic">Five walks, none past four-ish hours, every one worth the whole day. The Great Walks season closes April 30 — but these day sections stay open, and stay spectacular.</p>
+      <div style="margin-top:34px;max-width:820px;margin-left:auto;margin-right:auto">
+        <div class="hikecard"><div class="hikestat"><b>2h</b><span>Easy loop</span></div><div><h4>Taranaki Falls · Tongariro</h4><p>Across old lava flows out of Whakapapa, waterfall at the halfway mark, and Mt Ngauruhoe — Mt Doom — over your shoulder the entire way.</p></div></div>
+        <div class="hikecard"><div class="hikestat"><b>≤5h</b><span>Out &amp; back</span></div><div><h4>Tama Lakes · Tongariro</h4><p>Toward two crater lakes on open alpine tussock. Turn around whenever; the first lookout carries most of the reward. First to swap if early snow arrives.</p></div></div>
+        <div class="hikecard"><div class="hikestat"><b>3–4h</b><span>Gentle</span></div><div><h4>Routeburn Flats · Mt Aspiring NP</h4><p>The opening stretch of a Great Walk: beech forest, a river gorge, and snowline peaks at the turnaround meadow.</p></div></div>
+        <div class="hikecard"><div class="hikestat"><b>3h</b><span>Climb</span></div><div><h4>Key Summit · Fiordland</h4><p>Off the Milford Road to a tarn-dotted plateau with mountains in every direction. The best reward-per-step on the whole trip.</p></div></div>
+        <div class="hikecard"><div class="hikestat"><b>3h</b><span>Flat</span></div><div><h4>Hooker Valley · Aoraki/Mt Cook</h4><p>Three swing bridges and a finish at an iceberg-strewn glacier lake with Aoraki dead ahead. Famously the finest easy walk in the country.</p></div></div>
+      </div>
+      <div class="note"><strong>The week before:</strong> check DOC track conditions — sections close for maintenance and avalanche control without much warning, and Hooker Valley has had partial closures recently.</div>
+    </div>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="disp">« Little by little, one travels far »</div>
+  <nav>
+    <a href="index.html">The Tale</a><a href="itinerary.html">Journey</a><a href="map.html">Map</a><a href="practical.html">Provisions</a>
+  </nav>
+  <p class="credit" style="margin-top:20px">Photographs by Wikimedia Commons contributors, used under their free licences.</p>
+</footer>
+
+<script>
+document.querySelectorAll('#tabs button').forEach(function(b){
+  b.addEventListener('click',function(){
+    document.querySelectorAll('#tabs button').forEach(function(x){x.classList.remove('on')});
+    document.querySelectorAll('.panel').forEach(function(x){x.classList.remove('on')});
+    b.classList.add('on');
+    document.getElementById('p-'+b.dataset.p).classList.add('on');
+  });
+});
+
+var PACK={
+ 'Layers':['Waterproof shell jacket — non-negotiable','Packable rain pants','Merino base layers ×3–4 each','Fleece or light down mid-layer','Warm hat, gloves, buff','One smart-casual outfit each'],
+ 'Feet':['Broken-in waterproof hiking boots','Sneakers for towns and driving','Wool socks — more than seems sane'],
+ 'Do not skip':['Sunscreen — NZ sun bites even at 50°F','Sunglasses','Sandfly repellent for Milford &amp; Te Anau','Type I plug adapter, 230V','Small daypack','Headlamp','Reusable water bottle'],
+ 'This trip, specifically':['Small overnight bag for the cruise','Swimwear — the boat keeps a hot tub on deck','Dry bag or lens cloth for fjord weather','GF provisions for the thin stretches','A quarter of the case left empty for the haul home']
+};
+document.getElementById('packgrid').innerHTML=Object.keys(PACK).map(function(k){
+  return '<div><h4>'+k+'</h4>'+PACK[k].map(function(i){return '<label class="pk"><input type="checkbox"><span>'+i+'</span></label>'}).join('')+'</div>';
+}).join('');
+var boxes=document.querySelectorAll('.pk input');
+function tally(){
+  var c=0;boxes.forEach(function(b){if(b.checked)c++});
+  document.getElementById('pn').textContent=c+' / '+boxes.length;
+  document.getElementById('pf').style.width=(c/boxes.length*100)+'%';
+}
+boxes.forEach(function(b){b.addEventListener('change',tally)});tally();
+</script>
+</body>
+</html>

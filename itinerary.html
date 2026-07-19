@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Journey — New Zealand 2027</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.dayrow{
+  display:grid;grid-template-columns:1fr 1fr;gap:0;margin:0 0 42px;
+  background:#FBF6EA;border:1px solid var(--line);border-radius:4px;overflow:hidden;
+  box-shadow:0 1px 0 rgba(36,28,17,.06);
+  opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease;
+}
+.dayrow.vis{opacity:1;transform:none}
+.dayrow .ph{position:relative;min-height:300px}
+.dayrow .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.92) sepia(.05)}
+.dayrow .ph .cap{position:absolute;left:0;right:0;bottom:0;padding:10px 16px;font-size:.68rem;color:rgba(241,232,212,.85);background:linear-gradient(180deg,transparent,rgba(20,25,18,.72));letter-spacing:.04em}
+.dayrow .tx{padding:34px 36px 32px;display:flex;flex-direction:column}
+.dayrow:nth-child(even) .ph{order:2}
+.dayrow .rune{color:var(--rohan)}
+.dayrow h3{font-size:1.6rem;margin:8px 0 4px}
+.dayrow .sub{font-style:italic;color:rgba(36,28,17,.62);margin-bottom:14px}
+.dayrow p.body{color:rgba(36,28,17,.82);font-size:1.02rem;flex:1}
+.dayrow .tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+.filter{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:38px 0 46px}
+.filter button{
+  font-family:"Cinzel",serif;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;
+  background:none;border:1px solid var(--line);border-radius:2px;padding:10px 16px;cursor:pointer;color:rgba(36,28,17,.65);transition:.2s;
+}
+.filter button:hover{border-color:var(--ring);color:var(--rohan)}
+.filter button.on{background:var(--fangorn);border-color:var(--fangorn);color:var(--parchment)}
+.dayrow.hide{display:none}
+@media(max-width:760px){
+  .dayrow{grid-template-columns:1fr}
+  .dayrow:nth-child(even) .ph{order:0}
+  .dayrow .ph{min-height:220px}
+  .dayrow .tx{padding:26px 24px}
+}
+</style>
+</head>
+<body>
+
+<nav class="site">
+  <div class="in">
+    <a class="brand" href="index.html">NZ · MMXXVII</a>
+    <a class="pg" href="index.html">The Tale</a>
+    <a class="pg here" href="itinerary.html">The Journey</a>
+    <a class="pg" href="map.html">The Map</a>
+    <a class="pg" href="practical.html">Provisions</a>
+    <a class="pg" href="guide.html">Field Guide</a>
+  </div>
+</nav>
+
+<div class="pagehero">
+  <div class="bg" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Le_Ngauruhoe_et_le_Ruapehu_vus_du_sommet_du_Tongariro.jpg/1920px-Le_Ngauruhoe_et_le_Ruapehu_vus_du_sommet_du_Tongariro.jpg')"></div>
+  <div class="veil"></div>
+  <div class="in">
+    <div class="rune">Chapter I · Twelve Days</div>
+    <h1>The Journey</h1>
+    <p>North to south, warm to cold, city to fjord — loosely held, with a flex day hidden in the middle.</p>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <div class="filter" id="filter">
+      <button class="on" data-f="all">All twelve days</button>
+      <button data-f="lotr">Middle-earth</button>
+      <button data-f="hike">Hiking days</button>
+      <button data-f="food">Food &amp; wine</button>
+    </div>
+    <div id="list"></div>
+    <div class="note"><strong>A held breath in the plan:</strong> Day 8 is deliberately empty. It's where bad weather goes to die — or where a spa morning happens. Nothing downstream depends on it.</div>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="disp">« The road goes ever on »</div>
+  <nav>
+    <a href="index.html">The Tale</a><a href="map.html">Map</a><a href="practical.html">Provisions</a><a href="guide.html">Field Guide</a>
+  </nav>
+  <p class="credit" style="margin-top:20px">Photographs by Wikimedia Commons contributors, used under their free licences.</p>
+</footer>
+
+<script>
+var DAYS=[
+{n:1,t:'Land in Auckland, drive to the Waikato',s:'Two easy hours south. Do nothing else.',img:'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Auckland_skyline_-_May_2024_%282%29.jpg/1280px-Auckland_skyline_-_May_2024_%282%29.jpg',cap:'Auckland from the water',
+b:'The flight lands early morning, which is a gift — the trick is staying upright until a normal bedtime. Collect the car, take the drive slowly as a first lesson in staying left, and check in near Matamata or Cambridge. Dinner early, sleep long.',tg:[['stay','Stay · Matamata']],f:[]},
+{n:2,t:'Hobbiton, by lantern',s:'The Evening Banquet — the anniversary showstopper.',img:'https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Hobbit_holes_reflected_in_water.jpg/1280px-Hobbit_holes_reflected_in_water.jpg',cap:'Hobbit holes across the water, Matamata',
+b:'Daylight is for a slow morning; the set tour starts late afternoon and rolls into dinner. Lanterns come out over the lanes, the Green Dragon serves a feast, and we walk back through the Shire in the dark. The gluten-free note goes on the booking, not sprung on the night.',tg:[['lotr','The Shire'],['stay','Stay · Matamata']],f:['lotr','food']},
+{n:3,t:'Into Mordor',s:'South to Tongariro. Taranaki Falls in the afternoon.',img:'https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Le_Ngauruhoe_et_le_Ruapehu_vus_du_sommet_du_Tongariro.jpg/1280px-Le_Ngauruhoe_et_le_Ruapehu_vus_du_sommet_du_Tongariro.jpg',cap:'Ngauruhoe — Mt Doom — and Ruapehu beyond',
+b:'The drive drops us into volcanic country at 3,600 feet. Afternoon on the Taranaki Falls loop — two easy hours across old lava flows with Ngauruhoe over your shoulder the whole way. A chalet with a volcano view, and the first properly cold night of the trip.',tg:[['lotr','Mordor'],['hike','Taranaki Falls · 2h'],['stay','Discovery Lodge']],f:['lotr','hike']},
+{n:4,t:'Tama Lakes, then the capital',s:'Morning hike, afternoon drive, Wellington by dinner.',img:'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Tongariro_Mahuia_River_n.jpg/1280px-Tongariro_Mahuia_River_n.jpg',cap:'Mahuia River, Tongariro National Park',
+b:'Up toward the Tama Lakes, turning around whenever it stops being fun — the first lookout carries most of the reward. Then the long scenic run down the island, arriving with enough evening left for a proper Wellington dinner.',tg:[['hike','Tama Lakes · up to 5h'],['stay','The Intrepid']],f:['hike','food']},
+{n:5,t:'Weta Workshop &amp; the food city',s:'Where the films were actually built.',img:'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Weta_Workshop_Buildings.jpg/1280px-Weta_Workshop_Buildings.jpg',cap:'Weta Workshop, Miramar, Wellington',
+b:'Morning at Weta — the props, the creatures, the people who made them. Te Papa in the afternoon if the famous wind gets up. The evening is the point: Wellington has the best restaurant scene in the country, and gluten free is marked as standard.',tg:[['lotr','Weta Workshop'],['stay','The Intrepid']],f:['lotr','food']},
+{n:6,t:'Fly south, land in wine country',s:'WLG → ZQN, then Gibbston Valley by the fire.',img:'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Vineyard_in_Gibbston_Valley_in_South_Island%2C_New_Zealand_-_Central_Otago_wine_region.jpg/1280px-Vineyard_in_Gibbston_Valley_in_South_Island%2C_New_Zealand_-_Central_Otago_wine_region.jpg',cap:'Gibbston Valley vines, Central Otago',
+b:'A two-hour flight with one of the great landings — the Remarkables rise on either side of the approach. Afternoon in the Gibbston wine caves with a long lunch, and the autumn gold at its absolute peak in the valley. Then Queenstown for three nights, and the bags stay unpacked a while.',tg:[['stay','Queenstown · 3 nights']],f:['food']},
+{n:7,t:'Isengard, Lothlórien, Amon Hen',s:'The Glenorchy road and the Routeburn Flats.',img:'https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Glenorchy_wharf_and_red_shed_at_Lake_Wakatipu.jpg/1280px-Glenorchy_wharf_and_red_shed_at_Lake_Wakatipu.jpg',cap:'Glenorchy wharf, head of Lake Wakatipu',
+b:'Forty-five minutes along Lake Wakatipu on one of the world\u2019s great drives, into the valley that played Isengard, Lothl\u00f3rien and Amon Hen. Then the opening stretch of the Routeburn to the Flats and back — beech forest, a river gorge, snow on the tops.',tg:[['lotr','Three filming sites'],['hike','Routeburn Flats · 3–4h'],['stay','Queenstown']],f:['lotr','hike']},
+{n:8,t:'The flex day',s:'Adrenaline, spa, or gloriously nothing.',img:'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/The_Remarkables_from_Queenstown%2C_New_Zealand_08.jpg/1280px-The_Remarkables_from_Queenstown%2C_New_Zealand_08.jpg',cap:'The Remarkables above Queenstown',
+b:'Deliberately unplanned. Jet boat, bungy, the gondola and luge if the mood is up; a spa morning and a long lunch if it isn\u2019t. This is also where any weather-cancelled day from earlier gets its second chance.',tg:[['stay','Queenstown']],f:[]},
+{n:9,t:'The Milford Road, and a night in the fjord',s:'Key Summit en route, aboard by late afternoon.',img:'https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Tarn_at_Key_Summit%2C_a_side_track_on_the_Routeburn_Track.jpg/1280px-Tarn_at_Key_Summit%2C_a_side_track_on_the_Routeburn_Track.jpg',cap:'Alpine tarn at Key Summit, off the Milford Road',
+b:'One of the most spectacular roads anywhere, with a stop to climb Key Summit — a tarn-dotted plateau with mountains in every direction. Board the overnight cruise in the afternoon: dinner as the fjord walls close in, kayaks if the water is flat, and a berth inside Milford Sound.',tg:[['hike','Key Summit · 3h'],['stay','Aboard the cruise']],f:['hike','food']},
+{n:10,t:'Dawn on the Sound, then Te Anau',s:'Waterfalls on the way out, a quiet lake night.',img:'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Milford_Sound_%28New_Zealand%29.JPG/1280px-Milford_Sound_%28New_Zealand%29.JPG',cap:'Mitre Peak, Milford Sound',
+b:'Waking up anchored inside the fjord is the image the whole trip is built around. The boat lets us off mid-morning; The Chasm and Mirror Lakes break up the drive out. Te Anau in late autumn is very, very quiet — which is exactly the appeal.',tg:[['stay','Te Anau lakefront']],f:[]},
+{n:11,t:'Across the Pelennor Fields to Aoraki',s:'Longest drive, flattest hike, best sky.',img:'https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Stocking_Stream_Shelter_in_Hooker_Valley_in_front_of_Aoraki_Mount_Cook_Range.jpg/1280px-Stocking_Stream_Shelter_in_Hooker_Valley_in_front_of_Aoraki_Mount_Cook_Range.jpg',cap:'Hooker Valley beneath the Mount Cook range',
+b:'About five hours via Twizel, whose plains stood in for the Pelennor Fields. Then the Hooker Valley Track — flat, three swing bridges, a finish at a glacier lake with icebergs and Aoraki dead ahead. The night is a Dark Sky Reserve: freezing, cloudless, unforgettable.',tg:[['lotr','Pelennor Fields'],['hike','Hooker Valley · 3h'],['stay','Aoraki Court']],f:['lotr','hike']},
+{n:12,t:'Tekapo, Christchurch, home',s:'Four hours of turquoise lakes to the airport.',img:'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/LakeTekapoNov242024_05.jpg/1280px-LakeTekapoNov242024_05.jpg',cap:'Lake Tekapo, Mackenzie Basin',
+b:'A slow morning under the mountain, then out past Lake Pukaki and Tekapo — glacial flour turns the water a colour that photographs like a lie. An evening flight home, or one last night by the airport and away in the morning. Same calendar day we left: the date line gives Tuesday back.',tg:[['stay','Departure · CHC']],f:[]}
+];
+
+document.getElementById('list').innerHTML=DAYS.map(function(d){
+  return '<article class="dayrow" data-f="'+d.f.join(' ')+'">'
+  +'<div class="ph"><img loading="lazy" src="'+d.img+'" alt=""><div class="cap">'+d.cap+'</div></div>'
+  +'<div class="tx"><div class="rune">Day '+(d.n<10?'0':'')+d.n+'</div><h3>'+d.t+'</h3><div class="sub">'+d.s+'</div>'
+  +'<p class="body">'+d.b+'</p>'
+  +'<div class="tags">'+d.tg.map(function(t){return '<span class="tag '+t[0]+'">'+t[1]+'</span>'}).join('')+'</div></div></article>';
+}).join('');
+
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target)}})},{threshold:.12});
+document.querySelectorAll('.dayrow').forEach(function(r){io.observe(r)});
+
+document.querySelectorAll('#filter button').forEach(function(b){
+  b.addEventListener('click',function(){
+    document.querySelectorAll('#filter button').forEach(function(x){x.classList.remove('on')});
+    b.classList.add('on');
+    var f=b.dataset.f;
+    document.querySelectorAll('.dayrow').forEach(function(r){
+      var show=f==='all'||(r.dataset.f||'').split(' ').indexOf(f)>-1;
+      r.classList.toggle('hide',!show);
+      if(show){r.classList.add('vis')}
+    });
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,130 @@
+/* ————————————————————————————————
+   TEN YEARS · AOTEAROA 2027
+   An unexpected journey — design system
+   Palette: aged parchment, Fangorn green,
+   ring-gold, Mordor ash, Anduin blue
+———————————————————————————————— */
+:root{
+  --parchment:#F1E8D4;
+  --parchment-deep:#E7DAC0;
+  --ink:#241C11;
+  --fangorn:#2E4A32;
+  --fangorn-deep:#1D3322;
+  --ring:#B98A2E;
+  --ring-bright:#D6A93C;
+  --ash:#3A342C;
+  --anduin:#3E6472;
+  --rohan:#8A5A2B;
+  --line:rgba(36,28,17,.18);
+  --line-soft:rgba(36,28,17,.1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--parchment);
+  color:var(--ink);
+  font-family:"EB Garamond",Georgia,serif;
+  font-size:18px;line-height:1.66;
+  -webkit-font-smoothing:antialiased;
+}
+/* subtle parchment mottling */
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(ellipse 80% 60% at 15% 10%,rgba(185,138,46,.05),transparent 60%),
+    radial-gradient(ellipse 70% 50% at 85% 90%,rgba(46,74,50,.05),transparent 60%);
+}
+h1,h2,h3,.disp{font-family:"Cinzel",serif;line-height:1.08;letter-spacing:.015em;font-weight:600}
+h4{font-family:"Cinzel",serif;font-weight:600;letter-spacing:.02em}
+.script{font-family:"EB Garamond",serif;font-style:italic;font-weight:400}
+.rune{font-family:"Cinzel",serif;font-size:.68rem;letter-spacing:.34em;text-transform:uppercase;font-weight:600}
+.wrap{max-width:1060px;margin:0 auto;padding:0 26px;position:relative;z-index:1}
+section{padding:78px 0;position:relative}
+a{color:var(--fangorn)}
+
+/* ————— ornaments ————— */
+.orn{display:flex;align-items:center;gap:16px;color:var(--ring);margin:0 auto 22px;max-width:420px}
+.orn::before,.orn::after{content:"";height:1px;flex:1;background:linear-gradient(90deg,transparent,var(--ring))}
+.orn::after{background:linear-gradient(90deg,var(--ring),transparent)}
+.orn svg{flex:none}
+.ring-rule{height:2px;border:0;margin:0;background:linear-gradient(90deg,transparent,var(--ring) 20%,var(--ring-bright) 50%,var(--ring) 80%,transparent)}
+
+/* ————— nav ————— */
+nav.site{
+  position:sticky;top:0;z-index:50;
+  background:rgba(29,51,34,.97);backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(185,138,46,.4);
+}
+nav.site .in{max-width:1060px;margin:0 auto;padding:0 20px;display:flex;align-items:center;gap:8px}
+nav.site .brand{
+  font-family:"Cinzel",serif;font-weight:700;font-size:.82rem;letter-spacing:.22em;
+  color:var(--ring-bright);text-decoration:none;padding:16px 12px 16px 0;margin-right:auto;white-space:nowrap;
+}
+nav.site a.pg{
+  font-family:"Cinzel",serif;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;
+  color:rgba(241,232,212,.75);text-decoration:none;padding:18px 13px;transition:.2s;
+  border-bottom:2px solid transparent;white-space:nowrap;
+}
+nav.site a.pg:hover{color:var(--ring-bright)}
+nav.site a.pg.here{color:var(--ring-bright);border-bottom-color:var(--ring-bright)}
+nav.site .in{overflow-x:auto;scrollbar-width:none}
+nav.site .in::-webkit-scrollbar{display:none}
+
+/* ————— page hero ————— */
+.pagehero{
+  position:relative;color:var(--parchment);text-align:center;
+  padding:110px 26px 96px;overflow:hidden;background:var(--fangorn-deep);
+}
+.pagehero .bg{position:absolute;inset:0;background-size:cover;background-position:center;filter:saturate(.85)}
+.pagehero .veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,30,22,.55),rgba(20,30,22,.72))}
+.pagehero .in{position:relative;z-index:2;max-width:760px;margin:0 auto}
+.pagehero .rune{color:var(--ring-bright)}
+.pagehero h1{font-size:clamp(2.4rem,7vw,4.6rem);margin:16px 0 14px;color:#F7F1E1;text-shadow:0 2px 18px rgba(0,0,0,.45)}
+.pagehero p{font-size:1.16rem;font-style:italic;color:rgba(241,232,212,.92);text-shadow:0 1px 10px rgba(0,0,0,.5)}
+
+/* ————— cards & imagery ————— */
+.imgcard{background:#FBF6EA;border:1px solid var(--line);border-radius:4px;overflow:hidden;box-shadow:0 1px 0 rgba(36,28,17,.06)}
+.imgcard img{width:100%;aspect-ratio:16/10;object-fit:cover;display:block;filter:saturate(.92) sepia(.06)}
+.imgcard .pad{padding:22px 24px 26px}
+figcaption,.credit{font-size:.72rem;color:rgba(36,28,17,.5);letter-spacing:.04em}
+
+.lede{max-width:46rem;margin:16px auto 0;font-size:1.13rem;color:rgba(36,28,17,.78);text-align:center;font-style:italic}
+h2.center{text-align:center;font-size:clamp(1.7rem,4.4vw,2.6rem)}
+
+/* ————— buttons ————— */
+.btn{
+  display:inline-block;font-family:"Cinzel",serif;font-size:.74rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--parchment);background:var(--fangorn);text-decoration:none;padding:14px 26px;border-radius:2px;
+  border:1px solid var(--fangorn-deep);transition:.2s;
+}
+.btn:hover{background:var(--fangorn-deep);box-shadow:0 0 0 1px var(--ring)}
+.btn.gold{background:transparent;color:var(--ring);border-color:var(--ring)}
+.btn.gold:hover{background:var(--ring);color:#fff;box-shadow:none}
+
+/* ————— tags ————— */
+.tag{font-family:"Cinzel",serif;font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;padding:5px 11px;border:1px solid var(--line);border-radius:2px;color:rgba(36,28,17,.65);display:inline-block}
+.tag.lotr{border-color:var(--ring);color:var(--rohan);background:rgba(185,138,46,.09)}
+.tag.hike{border-color:var(--fangorn);color:var(--fangorn)}
+.tag.stay{border-color:var(--anduin);color:var(--anduin)}
+
+/* ————— footer ————— */
+footer.site{background:var(--fangorn-deep);color:rgba(241,232,212,.65);padding:60px 26px;text-align:center}
+footer.site .disp{color:var(--ring-bright);font-size:1.25rem;margin-bottom:10px}
+footer.site p{font-size:.95rem;max-width:36rem;margin:0 auto 8px;font-style:italic}
+footer.site .credit{color:rgba(241,232,212,.4)}
+footer.site nav{margin-top:22px;display:flex;gap:20px;justify-content:center;flex-wrap:wrap}
+footer.site nav a{font-family:"Cinzel",serif;font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(241,232,212,.6);text-decoration:none}
+footer.site nav a:hover{color:var(--ring-bright)}
+
+/* ————— utility grids ————— */
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:26px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px}
+.note{margin:34px auto 0;padding:20px 26px;border-left:3px solid var(--ring);background:rgba(185,138,46,.08);max-width:52rem;font-size:1rem}
+.note strong{font-family:"Cinzel",serif;font-size:.85rem;letter-spacing:.06em}
+
+@media(max-width:720px){
+  section{padding:56px 0}
+  .pagehero{padding:84px 20px 70px}
+  body{font-size:17px}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Map — New Zealand 2027</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<link rel="stylesheet" href="style.css">
+<style>
+#map{height:72vh;min-height:480px;border:1px solid var(--line);border-radius:4px;z-index:1}
+.leaflet-container{font-family:"EB Garamond",serif;background:#DCD2BB}
+.leaflet-popup-content-wrapper{background:#FBF6EA;color:var(--ink);border-radius:4px;border:1px solid var(--ring);box-shadow:0 8px 24px rgba(20,25,18,.25)}
+.leaflet-popup-tip{background:#FBF6EA;border:1px solid var(--ring)}
+.pop{width:240px}
+.pop img{width:100%;height:130px;object-fit:cover;border-radius:3px;display:block;margin-bottom:10px;filter:saturate(.92) sepia(.05)}
+.pop .rune{color:var(--rohan);font-size:.56rem}
+.pop h4{font-size:1.15rem;margin:2px 0 6px}
+.pop p{font-size:.9rem;color:rgba(36,28,17,.78);line-height:1.5}
+.numpin{
+  background:var(--fangorn);color:var(--parchment);border:2px solid var(--ring-bright);
+  border-radius:50%;width:30px;height:30px;display:flex;align-items:center;justify-content:center;
+  font-family:"Cinzel",serif;font-weight:700;font-size:.8rem;box-shadow:0 2px 8px rgba(20,25,18,.4);
+}
+.legend{display:flex;gap:22px;justify-content:center;flex-wrap:wrap;margin-top:22px;font-size:.9rem;color:rgba(36,28,17,.7)}
+.legend span{display:flex;align-items:center;gap:8px}
+.sw{width:26px;height:0;border-top:3px solid var(--fangorn)}
+.sw.fly{border-top-style:dashed;border-top-color:var(--rohan)}
+.stoplist{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px;margin-top:40px}
+.stopbtn{
+  display:flex;align-items:center;gap:12px;background:#FBF6EA;border:1px solid var(--line);border-radius:3px;
+  padding:11px 14px;cursor:pointer;font:inherit;text-align:left;transition:.2s;color:var(--ink);
+}
+.stopbtn:hover{border-color:var(--ring);box-shadow:0 0 0 1px var(--ring)}
+.stopbtn i{font-style:normal;font-family:"Cinzel",serif;font-weight:700;font-size:.72rem;color:var(--parchment);background:var(--fangorn);border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;flex:none}
+.stopbtn b{font-family:"Cinzel",serif;font-weight:600;font-size:.92rem;display:block}
+.stopbtn small{font-size:.78rem;color:rgba(36,28,17,.6);font-style:italic}
+</style>
+</head>
+<body>
+
+<nav class="site">
+  <div class="in">
+    <a class="brand" href="index.html">NZ · MMXXVII</a>
+    <a class="pg" href="index.html">The Tale</a>
+    <a class="pg" href="itinerary.html">The Journey</a>
+    <a class="pg here" href="map.html">The Map</a>
+    <a class="pg" href="practical.html">Provisions</a>
+    <a class="pg" href="guide.html">Field Guide</a>
+  </div>
+</nav>
+
+<div class="pagehero" style="padding:84px 26px 70px">
+  <div class="bg" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/LakeWakatipuNov172024_02.jpg/1920px-LakeWakatipuNov172024_02.jpg')"></div>
+  <div class="veil"></div>
+  <div class="in">
+    <div class="rune">Chapter II · Every League of It</div>
+    <h1>The Map</h1>
+    <p>Ten stops, one flight, and about 1,240 km of left-hand driving. Tap a marker, or a name below it.</p>
+  </div>
+</div>
+
+<section style="padding-top:46px">
+  <div class="wrap">
+    <div id="map"></div>
+    <div class="legend">
+      <span><span class="sw"></span> Driving legs</span>
+      <span><span class="sw fly"></span> Flight · Wellington → Queenstown</span>
+    </div>
+    <div class="stoplist" id="stops"></div>
+    <div class="note"><strong>On drive times:</strong> add 20–30% to whatever the map app says. New Zealand roads are narrow, winding, and worth slowing down for — and in late autumn the alpine stretches are best driven midday, after the shaded corners have thawed.</div>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="disp">« The world is not in your maps and books »</div>
+  <nav>
+    <a href="index.html">The Tale</a><a href="itinerary.html">Journey</a><a href="practical.html">Provisions</a><a href="guide.html">Field Guide</a>
+  </nav>
+  <p class="credit" style="margin-top:20px">Map tiles © OpenStreetMap contributors · Photographs by Wikimedia Commons contributors.</p>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+var STOPS=[
+{n:1,name:'Auckland',days:'Day 1',ll:[-36.8485,174.7633],img:'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Auckland_skyline_-_May_2024_%282%29.jpg/1280px-Auckland_skyline_-_May_2024_%282%29.jpg',d:'Wheels down, coffee, and an easy two-hour drive south. Nothing ambitious on arrival day.'},
+{n:2,name:'Hobbiton · Matamata',days:'Days 1–2',ll:[-37.8721,175.6829],img:'https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Hobbit_holes_reflected_in_water.jpg/1280px-Hobbit_holes_reflected_in_water.jpg',d:'The only set left standing. Evening Banquet: lantern-lit lanes, then a feast at the Green Dragon.'},
+{n:3,name:'Tongariro National Park',days:'Days 3–4',ll:[-39.2006,175.5393],img:'https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Le_Ngauruhoe_et_le_Ruapehu_vus_du_sommet_du_Tongariro.jpg/1280px-Le_Ngauruhoe_et_le_Ruapehu_vus_du_sommet_du_Tongariro.jpg',d:'Mordor in the flesh. Taranaki Falls and the Tama Lakes under Mt Ngauruhoe.'},
+{n:4,name:'Wellington',days:'Days 4–5',ll:[-41.2866,174.7756],img:'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Weta_Workshop_Buildings.jpg/1280px-Weta_Workshop_Buildings.jpg',d:'Weta Workshop by day, the country\u2019s best restaurants by night. Windy, compact, wonderful.'},
+{n:5,name:'Queenstown',days:'Days 6–8',ll:[-45.0312,168.6626],img:'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/The_Remarkables_from_Queenstown%2C_New_Zealand_08.jpg/1280px-The_Remarkables_from_Queenstown%2C_New_Zealand_08.jpg',d:'Three-night base under the Remarkables. Gibbston wine caves, a flex day, and the lake at the door.'},
+{n:6,name:'Glenorchy &amp; the Routeburn',days:'Day 7',ll:[-44.8490,168.3875],img:'https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Glenorchy_wharf_and_red_shed_at_Lake_Wakatipu.jpg/1280px-Glenorchy_wharf_and_red_shed_at_Lake_Wakatipu.jpg',d:'Isengard, Lothl\u00f3rien and Amon Hen country, then the Routeburn Flats on foot.'},
+{n:7,name:'Milford Sound',days:'Days 9–10',ll:[-44.6681,167.9273],img:'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Milford_Sound_%28New_Zealand%29.JPG/1280px-Milford_Sound_%28New_Zealand%29.JPG',d:'Key Summit on the road in, then overnight aboard — dinner, kayaks, and dawn inside the fjord.'},
+{n:8,name:'Te Anau',days:'Day 10',ll:[-45.4145,167.7180],img:'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/On_Lake_Te_Anau.jpg/1280px-On_Lake_Te_Anau.jpg',d:'A quiet lakeside night after the cruise. Late autumn here is empty in the best way.'},
+{n:9,name:'Aoraki / Mt Cook',days:'Day 11',ll:[-43.7355,170.0966],img:'https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Stocking_Stream_Shelter_in_Hooker_Valley_in_front_of_Aoraki_Mount_Cook_Range.jpg/1280px-Stocking_Stream_Shelter_in_Hooker_Valley_in_front_of_Aoraki_Mount_Cook_Range.jpg',d:'Across the Pelennor Fields to the Hooker Valley Track, then a Dark Sky Reserve overhead.'},
+{n:10,name:'Christchurch',days:'Day 12',ll:[-43.5321,172.6362],img:'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/LakeTekapoNov242024_05.jpg/1280px-LakeTekapoNov242024_05.jpg',d:'Out past Pukaki and Tekapo\u2019s turquoise to the airport, and home the same calendar day we left.'}
+];
+
+var map=L.map('map',{scrollWheelZoom:false});
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+  attribution:'&copy; OpenStreetMap contributors',maxZoom:18
+}).addTo(map);
+
+var markers={};
+STOPS.forEach(function(s){
+  var ic=L.divIcon({className:'',html:'<div class="numpin">'+s.n+'</div>',iconSize:[30,30],iconAnchor:[15,15],popupAnchor:[0,-16]});
+  var m=L.marker(s.ll,{icon:ic}).addTo(map);
+  m.bindPopup('<div class="pop"><img src="'+s.img+'" alt=""><div class="rune">'+s.days+'</div><h4>'+s.name+'</h4><p>'+s.d+'</p></div>');
+  markers[s.n]=m;
+});
+
+/* driving legs */
+function line(pts,fly){
+  return L.polyline(pts,{color:fly?'#8A5A2B':'#2E4A32',weight:3,opacity:.85,dashArray:fly?'6 8':null}).addTo(map);
+}
+line([STOPS[0].ll,STOPS[1].ll]);                    // AKL -> Hobbiton
+line([STOPS[1].ll,STOPS[2].ll]);                    // Hobbiton -> Tongariro
+line([STOPS[2].ll,STOPS[3].ll]);                    // Tongariro -> WLG
+/* flight arc WLG -> ZQN */
+(function(){
+  var a=STOPS[3].ll,b=STOPS[4].ll,pts=[],k;
+  for(k=0;k<=24;k++){
+    var t=k/24, lat=a[0]+(b[0]-a[0])*t, lng=a[1]+(b[1]-a[1])*t;
+    var bulge=Math.sin(Math.PI*t)*1.1;
+    pts.push([lat-bulge*.35,lng-bulge]);
+  }
+  line(pts,true);
+})();
+line([STOPS[4].ll,STOPS[5].ll]);                    // ZQN -> Glenorchy
+line([STOPS[5].ll,[-45.0312,168.6626],[-45.4145,167.7180],[-44.8131,168.1294],STOPS[6].ll]); // -> Te Anau road -> Divide -> Milford
+line([STOPS[6].ll,[-44.8131,168.1294],STOPS[7].ll]); // Milford -> Te Anau
+line([STOPS[7].ll,[-44.2569,169.4790],[-44.19,170.09],STOPS[8].ll]); // Te Anau -> Twizel -> Mt Cook
+line([STOPS[8].ll,[-44.19,170.09],[-44.0046,170.4770],STOPS[9].ll]); // Mt Cook -> Tekapo -> CHC
+
+map.fitBounds(L.latLngBounds(STOPS.map(function(s){return s.ll})).pad(.12));
+
+document.getElementById('stops').innerHTML=STOPS.map(function(s){
+  return '<button class="stopbtn" data-n="'+s.n+'"><i>'+s.n+'</i><span><b>'+s.name+'</b><small>'+s.days+'</small></span></button>';
+}).join('');
+document.querySelectorAll('.stopbtn').forEach(function(b){
+  b.addEventListener('click',function(){
+    var s=STOPS[+b.dataset.n-1];
+    map.flyTo(s.ll,9,{duration:1.1});
+    setTimeout(function(){markers[s.n].openPopup()},1150);
+    document.getElementById('map').scrollIntoView({behavior:'smooth',block:'center'});
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Provisions — New Zealand 2027</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:36px}
+.opt{background:#FBF6EA;border:1px solid var(--line);border-radius:4px;padding:26px;cursor:pointer;transition:.22s;position:relative}
+.opt:hover{border-color:var(--ring)}
+.opt.sel{border-color:var(--ring);box-shadow:0 0 0 1.5px var(--ring)}
+.opt.sel::after{content:"✦";position:absolute;top:16px;right:18px;color:var(--ring);font-size:1.05rem}
+.opt h4{font-size:1.12rem;margin-bottom:5px;padding-right:26px}
+.opt .price{font-family:"Cinzel",serif;font-size:.86rem;letter-spacing:.05em;color:var(--rohan);display:block;margin-bottom:10px}
+.opt p{font-size:.94rem;color:rgba(36,28,17,.72)}
+.total{
+  margin-top:34px;background:var(--fangorn-deep);color:#F1E8D4;border-radius:4px;border:1px solid var(--ring);
+  padding:30px 34px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;
+}
+.total .rune{color:var(--ring-bright);font-size:.6rem}
+.total b{font-family:"Cinzel",serif;font-size:2.4rem;font-weight:600;display:block}
+.bd{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:2px;margin-top:20px;background:var(--line);border:1px solid var(--line);border-radius:4px;overflow:hidden}
+.bd div{background:#FBF6EA;padding:16px 18px}
+.bd .rune{color:rgba(36,28,17,.5);font-size:.56rem;display:block;margin-bottom:6px}
+.bd b{font-family:"Cinzel",serif;font-size:.98rem;font-weight:600}
+.trow{display:grid;grid-template-columns:minmax(110px,150px) 1fr minmax(78px,96px);gap:14px;align-items:center;padding:11px 0;border-bottom:1px solid var(--line-soft)}
+.tname{font-family:"Cinzel",serif;font-size:.86rem;font-weight:600}
+.tbar{position:relative;height:15px;background:rgba(36,28,17,.07);border-radius:8px}
+.tfill{position:absolute;height:100%;border-radius:8px;background:linear-gradient(90deg,var(--anduin),var(--ring-bright));transition:transform 1s cubic-bezier(.2,.8,.2,1);transform-origin:left;transform:scaleX(0)}
+.tfill.go{transform:scaleX(1)}
+.tval{font-size:.85rem;color:rgba(36,28,17,.65);text-align:right;font-variant-numeric:tabular-nums}
+.tscale{display:grid;grid-template-columns:minmax(110px,150px) 1fr minmax(78px,96px);gap:14px;margin-top:10px}
+.tscale div:nth-child(2){display:flex;justify-content:space-between;font-size:.68rem;color:rgba(36,28,17,.4);letter-spacing:.08em}
+.threecol{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:32px;margin-top:44px}
+.threecol h4{font-size:1.12rem;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+.threecol li{margin:9px 0 9px 18px;color:rgba(36,28,17,.78);font-size:.99rem}
+.steps{margin-top:40px;counter-reset:s;max-width:760px}
+.step{display:grid;grid-template-columns:52px 1fr;gap:20px;padding:20px 0;border-top:1px solid var(--line-soft);align-items:start}
+.step:last-child{border-bottom:1px solid var(--line-soft)}
+.step i{
+  counter-increment:s;font-style:normal;font-family:"Cinzel",serif;font-size:.78rem;font-weight:700;
+  width:36px;height:36px;border:1.5px solid var(--ring);color:var(--rohan);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+}
+.step i::before{content:counter(s)}
+.step h4{font-size:1.14rem;margin-bottom:4px}
+.step p{color:rgba(36,28,17,.72);font-size:.97rem}
+.urg{font-family:"Cinzel",serif;font-size:.54rem;letter-spacing:.14em;text-transform:uppercase;color:#8E3B26;border:1px solid #8E3B26;padding:3px 8px;border-radius:2px;margin-left:10px;vertical-align:middle}
+</style>
+</head>
+<body>
+
+<nav class="site">
+  <div class="in">
+    <a class="brand" href="index.html">NZ · MMXXVII</a>
+    <a class="pg" href="index.html">The Tale</a>
+    <a class="pg" href="itinerary.html">The Journey</a>
+    <a class="pg" href="map.html">The Map</a>
+    <a class="pg here" href="practical.html">Provisions</a>
+    <a class="pg" href="guide.html">Field Guide</a>
+  </div>
+</nav>
+
+<div class="pagehero" style="padding:84px 26px 70px">
+  <div class="bg" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Vineyard_in_Gibbston_Valley_in_South_Island%2C_New_Zealand_-_Central_Otago_wine_region.jpg/1920px-Vineyard_in_Gibbston_Valley_in_South_Island%2C_New_Zealand_-_Central_Otago_wine_region.jpg')"></div>
+  <div class="veil"></div>
+  <div class="in">
+    <div class="rune">Chapter III · Gold, Wings &amp; Weather</div>
+    <h1>Provisions</h1>
+    <p>What it costs, how we fly from Nashville, and the cold we're going looking for.</p>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <div class="orn"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M2 16 L22 8 M13 11.5 L9 20 L11 13 L4 12 Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></div>
+    <h2 class="center">One connection, then fourteen hours</h2>
+    <p class="lede">No nonstop from Nashville, so we hop to Houston — the shortest domestic leg with a direct Air New Zealand flight to Auckland on the far side. Choose a cabin; the whole trip's cost moves with it.</p>
+
+    <div class="opts" id="cabins">
+      <div class="opt" data-c="0"><h4>Premium Economy</h4><span class="price">$5,500 – 8,500 · two seats</span><p>Leather recliners, ten more inches of legroom, Business Premier menus and NZ wine. Refundable minus $400, no change fees.</p></div>
+      <div class="opt sel" data-c="1"><h4>The Split</h4><span class="price">$7,000 – 9,000 · two seats</span><p>Premium economy flying out, lie-flat business on the overnight run home — the bed exactly where it matters.</p></div>
+      <div class="opt" data-c="2"><h4>Business Premier</h4><span class="price">$8,000 – 13,000 · two seats</span><p>Lie-flat both ways, lounge access, and the least recovery lost on either end of the world.</p></div>
+    </div>
+
+    <div class="total">
+      <div><span class="rune">Estimated trip total · two travellers</span><b id="tot">$14.5k – 20.5k</b></div>
+      <div style="text-align:right"><span class="rune">Flights claim</span><b id="pct" style="font-size:1.5rem">~45%</b></div>
+    </div>
+
+    <div class="bd">
+      <div><span class="rune">Flights</span><b id="b-f">$7,000 – 9,000</b></div>
+      <div><span class="rune">Lodging · 12 nights</span><b>$3,000 – 5,000</b></div>
+      <div><span class="rune">Milford cruise</span><b>$600 – 1,000</b></div>
+      <div><span class="rune">Car &amp; fuel</span><b>$1,200 – 1,800</b></div>
+      <div><span class="rune">Food, wine, deeds</span><b>$2,500 – 4,000</b></div>
+    </div>
+
+    <div class="threecol">
+      <div>
+        <h4>Booking lore</h4>
+        <ul>
+          <li>Premium-cabin sales cluster November 2026 to January 2027. That's the hunting season.</li>
+          <li>Fly Monday–Thursday over the Pacific; Air NZ surcharges the weekends.</li>
+          <li>Check the aircraft — the leased 777s carry a lesser premium economy seat.</li>
+          <li>One ticket, BNA → IAH → AKL, so a Nashville delay is the airline's burden.</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Where to watch</h4>
+        <ul>
+          <li><strong>Going</strong> — the paid tier is the one with business class and mistake fares.</li>
+          <li><strong>Thrifty Traveler Premium</strong> — strong premium-cabin coverage, 200+ cities.</li>
+          <li><strong>Google Flights alert</strong> — the free baseline on our exact dates.</li>
+          <li><strong>Air New Zealand's own list</strong> — they run shoulder-season sales directly.</li>
+        </ul>
+      </div>
+      <div>
+        <h4>The date line</h4>
+        <ul>
+          <li>Leave Nashville Monday evening; land in Auckland Wednesday morning. Tuesday simply never happens.</li>
+          <li>Flying home, we land the same calendar day we left. The day comes back.</li>
+          <li>Home from Christchurch via Auckland — leave three hours for the transfer.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:#241C11;color:#F1E8D4">
+  <div class="wrap">
+    <div class="orn" style="color:var(--ring-bright)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 3 V6 M12 18 V21 M3 12 H6 M18 12 H21 M5.6 5.6 L7.7 7.7 M16.3 16.3 L18.4 18.4 M5.6 18.4 L7.7 16.3 M16.3 7.7 L18.4 5.6" stroke="currentColor" stroke-width="1.3"/><circle cx="12" cy="12" r="3.6" stroke="currentColor" stroke-width="1.3"/></svg></div>
+    <h2 class="center" style="color:#F7F1E1">Cold enough, everywhere</h2>
+    <p class="lede" style="color:rgba(241,232,212,.72)">Late April into early May. Auckland on day one is the ceiling at 68°F, and it only falls from there — nothing on this road comes near 85.</p>
+    <div style="margin-top:40px" id="tc"></div>
+    <div class="tscale"><div></div><div><span>25°</span><span>40°</span><span>55°</span><span>70°</span></div><div></div></div>
+    <div class="note" style="border-color:var(--ring);background:rgba(185,138,46,.1);color:rgba(241,232,212,.88)">
+      <strong style="color:var(--ring-bright)">What the numbers don't say.</strong> Wellington's wind and Fiordland's rain each steal five to ten degrees from how it feels, and the boat deck at dusk on Milford Sound will be the coldest moment of the trip. Mt Cook alone promises freezing nights — which is precisely why its stars are the best in the hemisphere.
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="orn"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="1" stroke="currentColor" stroke-width="1.3"/><path d="M8 2 V6 M16 2 V6 M4 9 H20" stroke="currentColor" stroke-width="1.3"/></svg></div>
+    <h2 class="center">What to lock in, in order</h2>
+    <p class="lede">Most 2027 books open around eleven months out. Ranked by how fast each vanishes, not by cost.</p>
+    <div class="steps" style="margin-left:auto;margin-right:auto">
+      <div class="step"><i></i><div><h4>Milford overnight cruise <span class="urg">Sells out first</span></h4><p>The boutique Fiordland Jewel sails only until about April 30; the larger Milford Mariner runs into May. This one choice sets the trip's dates, so it goes first.</p></div></div>
+      <div class="step"><i></i><div><h4>Mt Cook lodging <span class="urg">Nearly no plan B</span></h4><p>Aoraki Court, and the village holds almost nothing else. Heated floors, spa-bath rooms, walkable trailheads.</p></div></div>
+      <div class="step"><i></i><div><h4>The Hobbiton Evening Banquet</h4><p>Runs only certain evenings each week. The gluten-free note goes on the reservation itself.</p></div></div>
+      <div class="step"><i></i><div><h4>Flights</h4><p>Hunt the winter sales. Premium economy is refundable minus $400 with no change fee — booking early costs us almost nothing in flexibility.</p></div></div>
+      <div class="step"><i></i><div><h4>Everything else</h4><p>Queenstown beds, the car, the wine tour. Shoulder season keeps all of it open until close to the day.</p></div></div>
+    </div>
+    <div class="note"><strong>One date to sail around:</strong> Anzac Day, April 25 — a serious national holiday with a busy long weekend. Landing on the 26th or 27th steps neatly past it, and puts us in Central Otago just as the poplars turn.</div>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="disp">« It's the job that's never started as takes longest to finish »</div>
+  <nav>
+    <a href="index.html">The Tale</a><a href="itinerary.html">Journey</a><a href="map.html">Map</a><a href="guide.html">Field Guide</a>
+  </nav>
+  <p class="credit" style="margin-top:20px">Photographs by Wikimedia Commons contributors, used under their free licences.</p>
+</footer>
+
+<script>
+var CAB=[
+ {f:'$5,500 – 8,500',t:'$13.8k – 20k',pct:'~40%'},
+ {f:'$7,000 – 9,000',t:'$14.5k – 20.5k',pct:'~45%'},
+ {f:'$8,000 – 13,000',t:'$15.3k – 24.8k',pct:'~53%'}
+];
+document.querySelectorAll('.opt').forEach(function(o){
+  o.addEventListener('click',function(){
+    document.querySelectorAll('.opt').forEach(function(x){x.classList.remove('sel')});
+    o.classList.add('sel');
+    var c=CAB[+o.dataset.c];
+    document.getElementById('b-f').textContent=c.f;
+    document.getElementById('tot').textContent=c.t;
+    document.getElementById('pct').textContent=c.pct;
+  });
+});
+
+var T=[['Auckland',50,68],['Tongariro',32,55],['Wellington',46,62],['Queenstown',34,58],['Milford Sound',40,58],['Te Anau',36,56],['Aoraki / Mt Cook',28,52],['Christchurch',40,62]];
+var LO=25,HI=70;
+document.getElementById('tc').innerHTML=T.map(function(r){
+  var l=(r[1]-LO)/(HI-LO)*100,w=(r[2]-r[1])/(HI-LO)*100;
+  return '<div class="trow"><div class="tname">'+r[0]+'</div><div class="tbar"><div class="tfill" style="left:'+l+'%;width:'+w+'%"></div></div><div class="tval">'+r[1]+'° – '+r[2]+'°</div></div>';
+}).join('');
+new IntersectionObserver(function(es,o){
+  if(es[0].isIntersecting){
+    document.querySelectorAll('.tfill').forEach(function(f,i){setTimeout(function(){f.classList.add('go')},i*90)});
+    o.disconnect();
+  }
+},{threshold:.2}).observe(document.getElementById('tc'));
+</script>
+</body>
+</html>
